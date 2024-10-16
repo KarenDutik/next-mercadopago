@@ -1,7 +1,7 @@
-import {Payment, PreApproval} from "mercadopago";
-import {revalidatePath} from "next/cache";
+import { Payment, PreApproval } from "mercadopago";
+import { revalidatePath } from "next/cache";
 
-import api, {mercadopago} from "@/api";
+import api, { mercadopago } from "@/api";
 
 async function handlePaymentNotification(body: {data: {id: string}}) {
   // Obtenemos el pago

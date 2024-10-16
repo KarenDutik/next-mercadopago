@@ -1,6 +1,6 @@
-import {readFileSync, writeFileSync} from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 
-import {MercadoPagoConfig, Preference, PreApproval} from "mercadopago";
+import { MercadoPagoConfig, PreApproval, Preference } from "mercadopago";
 
 interface Message {
   id: number;
@@ -36,26 +36,32 @@ const api = {
     },
     async subscribe(email: string, token: string) {
       // Creamos la suscripción con todos sus datos
-      const suscription = await new PreApproval(mercadopago).create({
-        body: {
-          back_url: process.env.APP_URL!,
-          reason: "Suscripción a mensajes de muro",
-          auto_recurring: {
-            frequency: 1,
-            frequency_type: "months",
-            transaction_amount: 100,
-            currency_id: "ARS",
-            start_date: new Date().toISOString(),
-            end_date: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 30).toISOString(),
+      try {
+        const suscription = await new PreApproval(mercadopago).create({
+          body: {
+            back_url: process.env.APP_URL!,
+            reason: "Suscripción a Yafu",
+            auto_recurring: {
+              frequency: 7,
+              frequency_type: "days",
+              transaction_amount: 15,
+              currency_id: "ARS",
+              start_date: new Date().toISOString(),
+              end_date: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 30).toISOString(),
+            },
+            payer_email: email,
+            card_token_id: token,
+            status: "authorized",
           },
-          payer_email: email,
-          card_token_id: token,
-          status: "authorized",
-        },
-      });
+        });
 
       // Guardamos el id de la suscripción en la base de datos del usuario
       await api.user.update({suscription: suscription.id});
+      } catch(error) {
+        console.error({error})
+      }
+     
+
     },
   },
   message: {
