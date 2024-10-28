@@ -232,7 +232,7 @@ Excelente, nuestro pago fue aprobado, el webhook fue recibido y nuestro mensaje 
 
 ## Implementar suscripciones
 
-A la hora de implementar suscripciones podemos hacerlo mediante [Suscripciones con plan asociado](https://www.mercadopago.com.ar/developers/es/docs/subscriptions/integration-configuration/subscription-associated-plan) o [Suscripciones sin plan asociado](https://www.mercadopago.com.ar/developers/es/docs/subscriptions/integration-configuration/subscription-no-associated-plan). Las primeras son bastante sencillas de implementar: Se crea un plan con valor, nombre y un par de datos más y listo, nos da una URL similar a lo que hace una preferencia. El problema es que este preferencia no recibe datos de referencia o metadatos que podamos usar para identificar a nuestro usuario cuando hace el pago, así que vamos a usar la segunda opción.
+A la hora de implementar suscripciones podemos hacerlo mediante [Suscripciones con plan asociado](https://www.mercadopago.com.ar/developers/es/docs/subscriptions/integration-configuration/subscription-associated-plan) o [Suscripciones sin plan asociado](https://www.mercadopago.com.ar/developers/es/docs/subscriptions/integration-configuration/subscription-no-associated-plan). Las primeras son bastante sencillas de implementar: Se crea un plan con valor, nombre y un par de datos más y listo, nos da una URL similar a lo que hace una preferencia. El problema es que este preferencia no recibe datos de referencia o metadatos que podamos usar para identificar a nuestro usuario cuando hace el pago, así que vamos a usar la segunda opción.j
 
 ### Crear el componente de Payment Card Brick
 
